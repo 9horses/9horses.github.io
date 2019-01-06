@@ -15,9 +15,7 @@ body {
 
 /* List */
 ul.icons li a:before {
-  color: #c8cccf; }
-ul.icons li a:hover:before {
-  color: #000000; }
+  color: #efefef; }
 
 /* Wrapper */
 #wrapper {
