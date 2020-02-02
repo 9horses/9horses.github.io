@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on Shinichi Urano&#39;s personal blog</title>
+    <link>http://example.org/tags/devops/</link>
+    <description>Recent content in DevOps on Shinichi Urano&#39;s personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Jul 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Why every CIO needs to look at DevOps</title>
+      <link>http://example.org/posts/why-every-cio-needs-to-look-at-devops/</link>
+      <pubDate>Thu, 10 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/why-every-cio-needs-to-look-at-devops/</guid>
+      <description>Software is eating the world. That’s how Netscape founder Marc Andressen describes it.
+It’s always been obvious that so-called high-tech companies live and die by their technological prowess. What is becoming more evident today is that we’re entering an era where all companies must compete by their technological prowess.
+There are headline-grabbing stories that herald this era. Netflix vs. Blockbuster is a recent example. Driven by technology, a disruptive start-up took over an industry.</description>
+    </item>
+    
+    <item>
+      <title>DevOps - It&#39;s solving the right problem</title>
+      <link>http://example.org/posts/devops-its-solving-the-right-problem/</link>
+      <pubDate>Wed, 11 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/posts/devops-its-solving-the-right-problem/</guid>
+      <description>When thinking about building an IT solution (or a business for that matter!) I&amp;rsquo;m often reminded of this delightful article by Aza Raskin: You Are Solving The Wrong Problem.
+It describes the insight that helped the late Paul MacCready solve the problem of human-powered flight and win the Kremer Prize. The winning aircraft, Gossamer Condor, can now be found at the Smithsonian Air and Space Museum and is pictured here.</description>
+    </item>
+    
+  </channel>
+</rss>
