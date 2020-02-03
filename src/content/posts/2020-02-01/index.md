@@ -24,5 +24,7 @@ But what they're really missing is the same thing that Feynman's "Cargo Cult Sci
 
 Or perhaps more importantly, they do not have the thinking in place to seek out that understanding. Nor do they have the culture of rewarding such behavior. 
 
-As Feynman noted, the Cargo Cult way of thinking is everywhere. I'm not sure how to fight that. I'm not even sure if it's always a bad thing. But I do think "Cargo Cult" is a great way to describing it, and we should have it in our shared vocabulary.
+In other words, "Cargo Cult" can be described as a group of people *doing something without understanding why those actions will have the desired result*.
+
+As Feynman noted, the Cargo Cult way of thinking is everywhere. I'm not sure how to fight that. I'm not even sure if it's always a bad thing. But I do think "Cargo Cult" is a great way to describing this behavior, and we should have it in our shared vocabulary.
 
