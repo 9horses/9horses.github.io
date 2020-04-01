@@ -40,5 +40,5 @@ I consult as fractional-CTO/CIO (advisory) and I sometimes take on projects with
 * Remote (External) Software Development - typically SaaS
 * Data Engineering
 
-If you're interested my working with you on a project, please reach out via [LinkedIn](https://www.linkedin.com/in/shinichiurano/)
+If you're interested in my working with you on a project, please reach out via [LinkedIn](https://www.linkedin.com/in/shinichiurano/)
 
