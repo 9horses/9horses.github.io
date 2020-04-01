@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Use WordPress to build a static website and host it on AWS for (practically) free. - Shinichi Urano&#39;s personal blog</title><link rel="icon" type="image/png" href=img/favicon.ico /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Use WordPress to build a static website and host it on AWS for (practically) free." />
+<meta property="og:description" content="Description" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://urano.me/drafts/2020-03-30/" />
+<meta property="article:published_time" content="2020-03-30T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2020-03-30T00:00:00&#43;00:00"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Use WordPress to build a static website and host it on AWS for (practically) free."/>
+<meta name="twitter:description" content="Description"/>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Raleway:200,300" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urano.me/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://urano.me/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://urano.me/css/custom.css" />
+	<link rel="stylesheet" type="text/css" href="https://urano.me/css/dark.css" media="(prefers-color-scheme: dark)" />
+	<link rel="stylesheet" type="text/css" href="https://urano.me/css/custom-dark.css" media="(prefers-color-scheme: dark)" />
+
+	<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<script src="https://urano.me/js/main.js"></script>
+	<script src="https://urano.me/js/abc.js"></script>
+	<script src="https://urano.me/js/xyz.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+	<div class="container wrapper post">
+		<div class="header">
+	<h1 class="site-title"><a href="https://urano.me/">Shinichi Urano&#39;s personal blog</a></h1>
+	<div class="site-description"><h2>Mostly thoughts around Software Development and Entrepreneurship</h2><nav class="nav social">
+			<ul class="flat"><a href="https://github.com/9horses" title="Github"><i data-feather="github"></i></a><a href="https://twitter.com/shinichi_urano" title="Twitter"><i data-feather="twitter"></i></a></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			
+			<li>
+				<a href="/about">About</a>
+			</li>
+			
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post-header">
+			<h1 class="title">Use WordPress to build a static website and host it on AWS for (practically) free.</h1>
+			<div class="meta">Posted at &mdash; Mar 30, 2020</div>
+		</div>
+
+		<div class="markdown">
+			
+
+<p><img src="aws-wordpress.jpg" alt="aws and wordpress" />
+<p style="text-align: center;"> AWS and WordPress can go together well </p></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Many people are using WordPress today to host websites that are primarily static.
+These are websites such as blogs that basically contain static content.
+Such a website just needs to be updated when, e.g., a new article is written.</p>
+
+<p>Today, static websites can be hosted in very cost-effective solutions like <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html">AWS S3</a> and <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+
+<p>Using one of these services to host your website (instead of WordPress) will very likely:</p>
+
+<ul>
+<li>save money,</li>
+<li>be more secure,</li>
+<li>speed up the website, and</li>
+<li>remove the need to manage/maintain WordPress and its host OS.</li>
+</ul>
+
+<p>This article is for those people who like the ease of creating such websites via WordPress but wants these benefit of hosting their websites in AWS S3.</p>
+
+<h2 id="background">Background</h2>
+
+<p>Recently, I decided to sign up as an &lsquo;expert&rsquo; on <a href="https://aws.amazon.com/iq/">AWS IQ</a> - it&rsquo;s a way for AWS customers to connect with third party consultants who are AWS experts.</p>
+
+<p>There, I met <a href="https://www.linkedin.com/in/mordecai-machazire-8279b4b0/">Mordecai Machazire</a>, an impressive medical student, who is striving to learn data science. He had used AWS to provision an EC2 instance loaded with WordPress. And he in turn used WordPress to build his website and host it there.</p>
+
+<p>The question he posed to me: &ldquo;why is my simple website costing me $9 a month?&rdquo;</p>
+
+<p>Well, there are several ways to reduce the cost of hosting WordPress:</p>
+
+<ul>
+<li>Try to use a smaller instance type.</li>
+<li>Pre-buy EC2 instance hours (&ldquo;reserved instance&rdquo;).</li>
+<li>Migrate to LightSail.</li>
+<li>Migrate to another WordPress hosting service.</li>
+</ul>
+
+<p>But the core of the problem is you&rsquo;re still paying for idle compute.</p>
+
+<p>And this is the precise scenario where just saving the site as a &ldquo;static website&rdquo; and hosting it on S3 will practically reduce the cost to the less than $1/month range. Additionally you&rsquo;d get the benefits I&rsquo;ve outlined above.</p>
+
+<p>After a quick Google search, I came across a nice WordPress plugin called WP2Static that can save a WordPress site as a static wite. And so with Mordecai&rsquo;s permission, I&rsquo;ve decided to put together this article.</p>
+
+<h2 id="solution-outline">Solution Outline</h2>
+
+<p>Here&rsquo;s the high-level workflow for &ldquo;having your cake and eat it too.&rdquo;<br />
+I.e., use WordPress, but host the website for low price.</p>
+
+<ul>
+<li>Use AWS EC2 instance for running WordPress, use this to build and preview your static website.</li>
+<li>Use AWS S3 for hosting the static website.</li>
+<li>Use the <a href="https://wp2static.com/">WP2Static</a> plugin to push the site to S3.</li>
+</ul>
+
+<p>And be sure to power-off the EC2 instance when not actively using WordPress for building/updating the website!</p>
+
+<p>For more details, I&rsquo;ve also put together a walk-through below.</p>
+
+<h2 id="caveats">Caveats</h2>
+
+<p>Note that this solution is not for those people using WordPress to host sites that needs dynamism.</p>
+
+<p>For example, if you&rsquo;re hosting a forum where users are uploading their own content, then you do <em>not</em> have a static website.</p>
+
+<p>While most modern websites have a separation of static content and dynamic content (which are hosted separately), architecting a website this way is well beyond the scope of this article.</p>
+
+<h2 id="walk-through">Walk-through</h2>
+
+<h3 id="get-an-aws-account">Get an AWS account.</h3>
+
+<p>If you don&rsquo;t already have one - AWS makes this <a href="https://portal.aws.amazon.com/billing/signup#/start">easy</a>.</p>
+
+<h3 id="register-your-domain-and-create-route53-zone-for-dns">Register your Domain and create Route53 zone for DNS.</h3>
+
+<p>You&rsquo;ll want to host your website on a domain you like - e.g., <a href="http://www.my-fantastic-static-website.com">http://www.my-fantastic-static-website.com</a>.
+First you&rsquo;ll need to purchase/register that domain either on <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html">AWS</a> or elsewhere.
+And then you&rsquo;ll need to <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring.html">configure Route53 as your DNS service</a>.</p>
+
+<h3 id="create-s3-based-static-site-and-an-iam-user">Create S3 based static site, and an IAM user.</h3>
+
+<p>I&rsquo;ve created a CloudFormation template (open-sourced) to simplify this step.
+You can find it <a href="https://github.com/joylogics/cloudformation#s3_website_for_wp2staticyaml">here</a>
+Note there is a launcher you can use to launch this template in your AWS console.</p>
+
+<p>This will create a bucket with a name which matches your website (e.g., &ldquo;www.my-fantastic-static-website.com&rdquo;). It will also create an IAM user specifically for uploading the content from WordPress to S3. You&rsquo;ll need the credentials in the output section of the CloudFormation to provide wp2static later.</p>
+
+<p>At this point you can point your web browser to the specified URL to verify that the URL is reachable.
+You should get a 404 error however, since there is no content in that website as yet.</p>
+
+<h3 id="create-wordpress-ec2-instance">Create WordPress EC2 instance</h3>
+
+<p>There are several walk-throughs for doing this. One easy way is to (again) leverage CloudFormation.
+AWS has a sample template they&rsquo;ve open-sourced <a href="https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/solutions/WordPress_Single_Instance.yaml">here</a>.
+I&rsquo;ve copied it into my repository and placed a launcher for it <a href="https://github.com/joylogics/cloudformation#wordpress_single_instanceyaml">here</a>.</p>
+
+<p>Note you&rsquo;ll need to <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">create a key pair</a> in AWS first.</p>
+
+<h3 id="install-wp2static-in-wordpress">Install wp2static in WordPress</h3>
+
+<p>Here are the steps:</p>
+
+<ul>
+<li>Navigate to WordPress admin site, then login</li>
+<li>Go to &lsquo;Plugins&rsquo; tab in left navigation bar.</li>
+<li>&ldquo;Add New&rdquo;</li>
+<li>Search for &ldquo;wp2static&rdquo;</li>
+<li>&ldquo;Install Now&rdquo;</li>
+<li>&ldquo;Activate&rdquo;</li>
+</ul>
+
+<h3 id="build-your-website">Build your website!</h3>
+
+<p>I&rsquo;m hardly the expert on actually using WordPress to build your website. But I know there are many plugins that make this simple. In particular <a href="https://elementor.com/">elementor</a> seems quite popular, and this is in fact the one that Mordecai had used.</p>
+
+<h3 id="use-wp2static-to-export-the-site-to-s3">Use wp2static to export the site to S3</h3>
+
+<p>Now, deploy to the S3 website using w2static. Go to the WP2Static tab in the WordPress admin site, then select &ldquo;Deploy static website&rdquo; tab in the top. Fill in the information in the UI using the information you&rsquo;ve captured from the steps above. Here&rsquo;s an example screen shot:
+<img src="capture1.png" alt="" />
+Now, when you click on &ldquo;Start static site export&rdquo;, the plugin will do all the heavy lifting of saving the site in S3.
+When it&rsquo;s completed, click on &ldquo;Go to my deployed site&rdquo; to verify that your site is indeed live.</p>
+
+<h3 id="stop-the-wordpress-ec2-instance">Stop the WordPress EC2 instance!</h3>
+
+<p>Once you are happy with the website, make sure to stop the EC2 instance.
+Just navigate to the <a href="https://console.aws.amazon.com/ec2/v2/home">EC2 dashboard</a> on the AWS console,
+find the EC2 instance you&rsquo;ve used, and stop (not terminate) the instance.
+This effectively powers down that server, while the data is still on the EBS disk.
+When it&rsquo;s time to update the website again, return to the dashboard and start the instance.
+(Note the public IP address will likely change.)</p>
+
+<h2 id="after-thoughts">After thoughts</h2>
+
+<h3 id="backup">Backup</h3>
+
+<h3 id="ssl">SSL</h3>
+
+<h3 id="staging">Staging</h3>
+
+<h3 id="forms">Forms</h3>
+
+<h3 id="login">Login</h3>
+
+<h3 id="even-lower-cost-options">Even Lower cost options</h3>
+
+<h4 id="lightsail">Lightsail</h4>
+
+<h4 id="fargate">Fargate</h4>
+
+<h4 id="laptop-desktop">Laptop/Desktop</h4>
+
+		</div>
+
+		<div class="post-tags">
+			
+				
+					<nav class="nav tags">
+							<ul class="flat">
+								
+								<li><a href="/tags/aws">AWS</a></li>
+								
+							</ul>
+					</nav>
+				
+			
+		</div>
+		</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div> Built with <a href="https://gohugo.io">Hugo</a></div>
+	</nav>
+</div>
+
+
+
+<script>feather.replace()</script>
+</body>
+</html>

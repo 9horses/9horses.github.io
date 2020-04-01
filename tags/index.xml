@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Shinichi Urano&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://urano.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS</title>
+      <link>https://urano.me/tags/aws/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://urano.me/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Agile</title>
+      <link>https://urano.me/tags/agile/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://urano.me/tags/agile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Engineering</title>
+      <link>https://urano.me/tags/engineering/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://urano.me/tags/engineering/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>science</title>
