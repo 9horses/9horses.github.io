@@ -20,19 +20,21 @@ Using one of these services to host your website (instead of WordPress) will ver
 * save money,
 * be more secure,
 * speed up the website, and
-* remove the need to manage/maintain WordPress and its host OS.
+* lessen the need to manage/maintain WordPress and its host OS.
 
-This article is for those people who like the ease of creating such websites via WordPress but wants these benefit of hosting their websites in AWS S3.
+But WordPress is still a great way to actually create a website! 
+This article is for those people who like the ease of creating websites via WordPress but wants the benefit of hosting their websites in AWS S3.
 
 
 ## Background
 Recently, I decided to sign up as an 'expert' on [AWS IQ](https://aws.amazon.com/iq/) - it's a way for AWS customers to connect with third party consultants who are AWS experts.
 
-There, I met [Mordecai Machazire](https://www.linkedin.com/in/mordecai-machazire-8279b4b0/), an impressive medical student, who is striving to learn data science. He had used AWS to provision an EC2 instance loaded with WordPress. And he in turn used WordPress to build his website and host it there.
+There, I met [Mordecai Machazire](https://www.linkedin.com/in/mordecai-machazire-8279b4b0/), an impressive medical student, who is striving to learn data science. He had used AWS to provision an EC2 instance loaded with WordPress. 
+And he in turn used WordPress to create a website with static content and then host it there.
 
 The question he posed to me: "why is my simple website costing me $9 a month?"
 
-Well, there are several ways to reduce the cost of hosting WordPress:
+Well, there are several ways to reduce the cost of hosting a website via WordPress:
 
 * Try to use a smaller instance type.
 * Pre-buy EC2 instance hours ("reserved instance").
@@ -119,14 +121,51 @@ When it's time to update the website again, return to the dashboard and start th
 (Note the public IP address will likely change.)
 
 ## After thoughts
-### Backup
-### SSL
-### Staging
-### Forms
-### Login
-### Even Lower cost options
-#### Lightsail
-#### Fargate
-#### Laptop/Desktop
+There are several additional topics that I'll mention in this section all related to this workflow.
 
+### Backup
+I did not explicitly mention it, but it is absolutely a good idea to automate snapshotting the WordPress EC2 instance. This will allow you to restore to a previous point in time, in case you end up making a lot of changes to the WordPress site that you don't want to keep. 
+
+At the very least, you can manually [take an EBS Snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html) of the EC2 instance's EBS volume, or [create an AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html) of the EC2 instance. It's probably best to do this each time you stop the EC2 instance.
+
+Alternatively, you can automate the backup process. There are two easy (and cost efficient) ways to do this: 
+
+* [Amazon Data Lifecycle Manager](https://aws.amazon.com/premiumsupport/knowledge-center/ebs-snapshot-data-lifecycle-manager/) 
+* [AWS Backup](https://aws.amazon.com/backup/). 
+
+There are several third party solutions as well, but these are costlier and I would not recommend them for a simple workload like this.
+
+### SSL
+One thing you may have noticed is that this creates a static website with the "http" URL, and not "https". The latter requires a certificate to be provisioned and the "AWS way" to do this is by provisioning a CloudFront distribution.
+
+CloudFront is a CDN (content delivery network) solution, and so this can also improve the website's performance as well.
+
+If you want to do this, you will have to provision a certificate for your domain via ACM (Amazon Certificate Manager), create a CloudFront distribution, and set the S3 bucket as the "Origin" for your distribution.
+
+### Staging
+If you are provisioning a website which is getting a lot of traffic, you probably want to create a separate website to stage your updates. To do this, simply run the [CloudFormation template](https://github.com/joylogics/cloudformation#s3_website_for_wp2staticyaml) again, but this time using a different subdomain (e.g., "staging.my-fantastic-static-website.com"). 
+
+Use the same methodology to deploy to this website, and once you are happy with the updates, you can deploy to the "production" site.
+
+### Forms and Comments
+As mentioned above under Caveats, static website means there is no server to, e.g., upload user content to. This means that common components such as WordPress based Forms and Comments will not work.
+
+However, there are several external solutions that give a way for static website to still implement Forms and Comments. For example, my [blog site](https://urano.me) (which is static) uses [formspree](https://formspree.io/) to allow readers to contact me.
+
+As for Comments, [here](https://darekkay.com/blog/static-site-comments/) is a good overview of various ways you can use.
+
+### Login
+Sometimes you want to create sections of your website that require login. This is well beyond the scope of this article, but this is possible by using CloudFront and creating a Lambda@Edge function that integrates with an Identity Provider (e.g., Cognito).
+
+### Even Lower cost options
+For those readers where even running an EC2 instance for a few hours per update is too much, there are other options here.
+
+#### Lightsail
+Instead of EC2 instance (a virtual machine node), you can use a VPS (virtual private server) where you are sharing the underlying resources with other "tenants". Amazon's VPS solution is called [Lightsail](https://aws.amazon.com/free/compute/lightsail/) and WordPress is in fact a common usecase.
+
+#### Fargate
+If you're more technically inclined, you can also spin up a [WordPress Docker Container](https://hub.docker.com/_/wordpress/) in ECS/Fargate.
+
+#### Laptop/Desktop
+And finally - you can always just install and run WordPress on your laptop (or desktop)! There are several guides for installing WordPress on your laptop. Keep in mind, though, this may become somewhat complicated if you decide to create and maintain multiple websites this way.
 
