@@ -21,6 +21,9 @@ disqusShortname = "localhost"
 # Number of posts to show in recent posts list (Optional). Defaults to 10.
 paginate = 10
 
+[Social]
+	twitter = "shinichi_urano"
+
 [params]
     # Blog subtitle which appears below blog title. Supports markdown.
     subtitle = "Mostly thoughts around Software Development and Entrepreneurship"

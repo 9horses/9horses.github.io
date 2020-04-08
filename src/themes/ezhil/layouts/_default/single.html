@@ -29,7 +29,9 @@
 		</div>
 
 		<!-- Sharing -->
+		{{- if not (and (isset .Params "type") (eq .Params.type "page")) -}}
 		{{- partial "share.html" . -}}
+		{{- end -}}
 
 		{{- $.Scratch.Set "isDisqus" true -}}
 
