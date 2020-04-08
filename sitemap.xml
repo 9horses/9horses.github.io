@@ -3,6 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://urano.me/reviews/temp200401/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urano.me/reviews/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://urano.me/</loc>
+    <lastmod>2020-04-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://urano.me/tags/aws/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -10,12 +27,6 @@
   
   <url>
     <loc>https://urano.me/drafts/</loc>
-    <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://urano.me/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -29,6 +40,12 @@
   <url>
     <loc>https://urano.me/drafts/2020-03-30/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://urano.me/tags/wordpress/</loc>
+    <lastmod>2020-03-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

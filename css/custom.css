@@ -12,3 +12,58 @@ img[src$='#floatleft'] {
 	height: auto;
 	float: left;
 }
+
+.markdown h2 {
+  border-bottom: 1px red solid;
+}
+
+#gh-comments-list {
+  margin-top: 25px;
+}
+
+#gh-comments-list h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#gh-comments-list a.btn {
+	margin: auto;
+	margin-bottom: 25px;
+	display: flex;
+	justify-content: center;
+	width: 200px;
+	background-color: #444444;
+  border: 1px solid #ddd;
+  color: #ddd;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+#gh-comment img {
+	margin: 5px;
+	float:left;
+	height: 32px;
+	width: 32px;
+  padding: 0px;
+}
+
+#gh-comment-head {
+	margin-left: 52px;
+	margin-right: 52px;
+  border: 1px solid #ddd;
+	background-color: #333333;
+  padding: 5px;
+}
+
+#gh-comment-body {
+	margin-left: 52px;
+	margin-right: 52px;
+  border: 1px solid #ddd;
+	background-color: #222222;
+  padding: 5px;
+}
+

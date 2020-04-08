@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reviews on Shinichi Urano&#39;s personal blog</title>
+    <link>https://urano.me/reviews/</link>
+    <description>Recent content in Reviews on Shinichi Urano&#39;s personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://urano.me/reviews/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Review of Shinichi as an AWS IQ Expert</title>
+      <link>https://urano.me/reviews/temp200401/</link>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://urano.me/reviews/temp200401/</guid>
+      <description>By Mordecai Machazire Worked with Shinichi in March, 2020
+Rating: * * * * *
+Shinichi is indeed a technology expert with a great deal of experience, going well beyond just AWS. He immediately came up with several options for solving my problem. We actually ended up working together to create the most efficient solution and we&amp;rsquo;re going to be sharing it in a blog article. He is responsive, professional, and thoughtful.</description>
+    </item>
+    
+  </channel>
+</rss>
