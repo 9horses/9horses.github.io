@@ -1,0 +1,38 @@
+<div id='gh-comments-list'>
+	<hr/>
+  <h2> Comments </h2>
+</div>
+<script type="text/javascript">
+	var url = "https://github.com/9horses/9horses.github.io/issues/" + {{ $.Params.ghcommentid }}
+	var api_url = "https://api.github.com/repos/9horses/9horses.github.io/issues/" + {{ $.Params.ghcommentid }} + "/comments"
+
+	$(document).ready(function () {
+			$.ajax(api_url, {
+					headers: {Accept: "application/vnd.github.v3.html+json"},
+					dataType: "json",
+					success: function(comments) {
+							$("#gh-comments-list").append("<a class='btn' href='" + url + "'>Post a comment on Github</a>");
+							$.each(comments, function(i, comment) {
+
+									var date = new Date(comment.created_at);
+
+									var t = "<div id='gh-comment'>";
+									t += "<img src='" + comment.user.avatar_url + "' width='24px'>";
+								  t += "<div id='gh-comment-head'>"
+								  t += "<b><a href='" + comment.user.html_url + "'>" + comment.user.login + "</a></b>";
+									t += " posted at ";
+								  t += "<em>" + date.toUTCString() + "</em>";
+									t += "</div>";
+									t += "<div id='gh-comment-body'>";
+									t += comment.body_html;
+									t += "</div>";
+									t += "</div>";
+									$("#gh-comments-list").append(t);
+							});
+					},
+					error: function() {
+							$("#gh-comments-list").append("Comments are not open for this post yet.");
+					}
+			});
+	});
+</script>
